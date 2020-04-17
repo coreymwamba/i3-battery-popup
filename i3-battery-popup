@@ -26,8 +26,7 @@
 #      Give this a value in seconds: 5s, 10s, or in minutes: 5m                #
 #      Default: 5m                                                             #
 #                                                                              #
-# -s : Play a sound file. This uses the command 'aplay' and depends on         #
-#      a working pulseaudio installation                                       #
+# -s : Play a sound file. This uses the command 'ffplay' and depends on ffmpeg #
 #                                                                              #
 # -v : The volume to play audio at. Expects a number 0-100.                    #
 #                                                                              #
@@ -161,7 +160,7 @@ show_notify(){
 
 play_sound(){
     if [[ -n $SOUND_TO_PLAY ]]; then
-        paplay "$SOUND_TO_PLAY" --volume $SOUND_VOLUME
+        ffplay -hide_banner -loglevel 0 -autoexit -nodisp -volume $SOUND_VOLUME "$SOUND_TO_PLAY"
     fi
 }
 
